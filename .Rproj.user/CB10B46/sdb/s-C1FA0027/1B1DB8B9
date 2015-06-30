@@ -1,0 +1,16 @@
+{
+    "contents" : "\n# This is the user-interface definition of a Shiny web application.\n# You can find out more about building applications with Shiny here:\n#\n# http://shiny.rstudio.com\n#\n\nlibrary(shiny)\n\nshinyUI(fluidPage(\n\n  # Application title\n  titlePanel(\"Genetic Algorithm For Traveling Salesman Problem\"),\n\n  # Sidebar with a slider input for number of bins\n  sidebarLayout(\n    sidebarPanel(\n      sliderInput('mutationRate', 'Numeric input, rate of mutation', 0.005, min = 0.005, max = 0.5, step = 0.005),\n      sliderInput('crossingRate', 'Numeric input, rate of crossing', 0.1, min = 0.1, max = 1, step = 0.01),\n      numericInput('popSize',  \"Size of the population\",20,min=20,max=100,step=10),\n      numericInput('popLength',  \"Number of cities\",10,min=10,max=100,step=10),\n      numericInput('repTimes',  \"Repetition Times\",10,min=10,max=2000,step=100)\n    ),\n    # Show a plot of the generated distribution\n    mainPanel(\n      h4('The optimized path is'),\n      verbatimTextOutput(\"path\"),\n      h4('The graph is below'),\n      plotOutput('graph')\n#       h4('The total distance'),\n#       verbatimTextOutput(\"distance\"),\n    )\n  )\n))\n",
+    "created" : 1433216029437.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "394720589",
+    "id" : "1B1DB8B9",
+    "lastKnownWriteTime" : 1433244892,
+    "path" : "~/MyTest/GeneticAlgorithm/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

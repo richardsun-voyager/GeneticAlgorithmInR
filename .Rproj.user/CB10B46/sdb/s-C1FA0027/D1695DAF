@@ -1,0 +1,16 @@
+{
+    "contents" : "##Crossing the parents and producing children\n##Written by Richard Soon\ncrossing<-function(pop,selected)\n{\n  if(length(selected)>1)\n  {parents<-pop$population[selected,]\n   size<-dim(parents)\n   sequence<-sample(size[1])\n   len<-size[2]\n   pairs<-as.integer(size[1]/2)##number of pairs\n   location<-as.integer(len/2)##cross point\n\n   ##keep the best items\n   orders<-order(pop$fitness,decreasing=T)\n   bestItem<-pop$population[orders[1],]\n   for(i in 1:pairs)\n   {\n     child1<-NULL\n     child2<-NULL\n     parent1<-parents[sequence[2*i-1],]##choose parent1 randomly\n     parent2<-parents[sequence[2*i],]##choose parent2 randomly\n     child1<-parent1[1:location]##Get the first half from Father\n     child2<-parent2[1:location]##Get the first half from Mother\n     index1<-parent2 %in% child1\n     index2<-parent1 %in% child2\n     child1[(location+1):len]<-parent2[!index1]##Get the second half from Mother\n     child2[(location+1):len]<-parent1[!index2]##Get the second half from Father\n     names(child1)<-names(parent1)##Equalize the names\n     names(child2)<-names(parent2)##Equalize the names\n     parents[sequence[2*i-1],]<-child1  ##Replace the old item\n     parents[sequence[2*i],]<-child2 ##Replace the old item\n   }\n   pop$population[selected,]<-parents\n  ## pop<-calPopFit(pop,t)##calculate the new fitness\n   ##replace the worst item with the best items\n   orders<-order(pop$fitness,decreasing=F)\n   pop$population[orders[1],]<-bestItem\n  }\n   pop\n}",
+    "created" : 1433231572562.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "530196646",
+    "id" : "D1695DAF",
+    "lastKnownWriteTime" : 1433233582,
+    "path" : "~/MyTest/GeneticAlgorithm/GA/crossing.R",
+    "project_path" : "GA/crossing.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

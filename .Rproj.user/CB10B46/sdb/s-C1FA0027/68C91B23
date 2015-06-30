@@ -1,0 +1,16 @@
+{
+    "contents" : "##Calculate the fitness of each route\nfitness<-function(x,t)\n{\nsum<-0\nif(class(t)==\"matrix\")##judge the type of the data\n{\nfor(i in 1:(length(x)-1))\n{\nsum<-sum+t[x[i],x[i+1]]\n}\n}\nfitness<-sum\n}",
+    "created" : 1433234083828.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "19824068",
+    "id" : "68C91B23",
+    "lastKnownWriteTime" : 1432890332,
+    "path" : "~/MyTest/GeneticAlgorithm/GA/fitness.R",
+    "project_path" : "GA/fitness.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

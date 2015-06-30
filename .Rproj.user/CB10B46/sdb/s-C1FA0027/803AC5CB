@@ -1,0 +1,16 @@
+{
+    "contents" : "##Calculate fitness of the population\n##Written by Richard Soon\n##pop, population of paths and fitnesses\n##t, matrix of distances between each two cities\ncalPopFit<-function(pop,t)\n{\n  if(class(pop)==\"list\")\n  {\n   size<-length(pop$fitness)\n    for(i in 1:size)\n    {\n     path<-pop$population[i,]\n     pop$fitness[i]<-fitness(path,t)\n    }\n   }\n  pop\n}",
+    "created" : 1433233518359.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1571012732",
+    "id" : "803AC5CB",
+    "lastKnownWriteTime" : 1433130125,
+    "path" : "~/MyTest/GeneticAlgorithm/GA/calPopFit.R",
+    "project_path" : "GA/calPopFit.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

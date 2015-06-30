@@ -1,0 +1,16 @@
+{
+    "contents" : "##Mutation of population,two points mutation\n##Written by Richard Soon\n##pop:population\n##rate:mutation rate of the population\nmutation<-function(pop,rate)\n{\n  size<-dim(pop$population)\n  num<-as.integer(size[1]*rate)\n  if(num>0)\n  {  selected<-sample(size[1],num)##select items which are going to mutate\n     location<-sample(size[2],2)##select the points where mutation happens\n     ##keep the best items\n     orders<-order(pop$fitness,decreasing=T)\n     bestItem<-pop$population[orders[1],]\n     for(i in selected)\n     {\n       item<-pop$population[i,]\n       ##swap the values\n       temp<-item[location[1]]\n       item[location[1]]<-item[location[2]]\n       item[location[2]]<-temp\n       pop$population[i,]<-item\n     }\n     ##replace the worst item with the best items\n     orders<-order(pop$fitness,decreasing=F)\n     pop$population[orders[1],]<-bestItem}\n    pop \n}",
+    "created" : 1433231642000.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2983718442",
+    "id" : "FFC0F513",
+    "lastKnownWriteTime" : 1433231688,
+    "path" : "~/MyTest/GeneticAlgorithm/GA/mutation.R",
+    "project_path" : "GA/mutation.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

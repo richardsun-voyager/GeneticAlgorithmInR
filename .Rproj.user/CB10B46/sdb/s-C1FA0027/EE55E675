@@ -1,0 +1,17 @@
+{
+    "contents" : "\n# This is the server logic for a Shiny web application.\n# You can find out more about building applications with Shiny here:\n#\n# http://shiny.rstudio.com\n#\nGA<-function(popSize,popLen,crossingRate,mutationRate,loops)\n{\n  set.seed(111)\n  source(\"GA/fitness.R\")\n  source(\"GA/selection.R\")\n  source(\"GA/crossing.R\")\n  source(\"GA/calPopFit.R\")\n  source(\"GA/mutation.R\")\n  t<-matrix(rnorm(popLen*popLen)+4.2,popLen,popLen)##the distance between two cities\n  fitValues<-NULL\n  ##Initializing the population and calculate fitness of each group\n  population<-matrix(0,popSize,popLen)\n  fitValues<-rep(0,popSize)\n  pop<-list(population=population,fitness=fitValues)\n  for(i in 1:popSize)\n  {\n    path<-sample(1:popLen,replace=FALSE)\n    pop$population[i,]<-path\n    pop$fitness[i]<-fitness(path,t)\n  }\n  ##mainbody\n  loop<-0\n  while(loop<loops)\n  {\n    ##Selection\n    rate<-crossingRate\n    selected<-selection(pop,rate)\n    ##Crossing\n    pop<-crossing(pop, selected)\n    pop<-calPopFit(pop,t)\n    ##mutation\n    rate<-mutationRate\n    pop<-mutation(pop,rate)\n    pop<-calPopFit(pop,t)\n    loop<-loop+1\n  }\n  orders<-order(pop$fitness,decreasing=T)\n  bestItem<-pop$population[orders[1],]\n  bestItem\n}\n\nlibrary(shiny)\n\nshinyServer(function(input, output) {\n\n  path<-reactive({popSize<-input$popSize\n                  popLen<-input$popLength\n                  loops<-input$repTimes\n                  mr<-input$mutationRate\n                  cr<-input$crossingRate\n                  GA(popSize,popLen,cr,mr,loops)})\n  \n  output$path<-renderPrint({path()\n  })\n  output$graph<-renderPlot({plot(path());lines(path(),col='red')})\n  \n})\n",
+    "created" : 1433216029812.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "794257123",
+    "id" : "EE55E675",
+    "lastKnownWriteTime" : 1433244912,
+    "path" : "~/MyTest/GeneticAlgorithm/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+        "notebook_format" : "html_document"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
